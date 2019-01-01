@@ -2,12 +2,12 @@
 background: linear-gradient(rgb(21, 27, 27),rgba(66, 97, 79, 0.466));
 background-size: cover;
 height: 100vh;
-
+display: flex;
 
 }
 
 .content-contain {
-    padding-left: 100px;
+    /* padding-left: 100px; */
 }
 
 .setting-contain img {
@@ -17,7 +17,7 @@ height: 100vh;
 
 
 .setting-contain input {
-    padding-left: 100px;
+    /* padding-left: 100px; */
     color: white;
 
 }

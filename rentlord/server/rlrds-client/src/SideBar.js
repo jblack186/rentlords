@@ -5,7 +5,7 @@ import {faUser, faGlasses, faWrench, faDoorClosed} from '@fortawesome/free-solid
 import {FontAwesomeIcon} from'@fortawesome/react-fontawesome';
 
 const SideBar = (props) => {
-console.log(props)
+console.log(props.pic)
     return (
             <div className='sidebar'>
                 <div className='siding-contain'>
@@ -13,21 +13,21 @@ console.log(props)
                     <li className='list-item'>
                     <FontAwesomeIcon icon={faGlasses} style={{color: 'white', fontSize: '20px', borderRadius: '20px'}}/>
 
-                    <Link style={{color: 'white', listStyle: 'none', textDecoration: 'none'}} to={ localStorage.getItem('Role') === 'Landlord' ? './landlord-dashboard' : './tenant-dashboard'}>Dashboard</Link>
+                    <Link style={{ fontSize: '80%', color: 'white', listStyle: 'none', textDecoration: 'none'}} to={ localStorage.getItem('Role') === 'Landlord' ? './landlord-dashboard' : './tenant-dashboard'}>Dashboard</Link>
                     </li>
                     <li className='list-item'>
                     <FontAwesomeIcon icon={faWrench} style={{color: 'white', fontSize: '20px', borderRadius: '20px'}}/>
 
-                        <Link style={{ color: 'white', listStyle: 'none', textDecoration: 'none'}} to='/settings'>Settings</Link>
+                        <Link style={{fontSize: '80%', color: 'white', listStyle: 'none', textDecoration: 'none'}} to='/settings'>Settings</Link>
                     </li>
                     <li className='list-item'>
                     <FontAwesomeIcon icon={faDoorClosed} style={{color: 'white', fontSize: '20px', borderRadius: '20px'}}/>
-                        <a  style={{textDecoration: 'none', color: 'white', listStyle: 'none'}} href='/api/logout'>Logout</a>
+                        <a  style={{fontSize: '80%', textDecoration: 'none', color: 'white', listStyle: 'none'}} href='/api/logout'>Logout</a>
                     </li>
                 </ul>
                 </div>
                 <div className='username'>
-                <FontAwesomeIcon icon={faUser} style={{color: 'white', fontSize: '20px', borderRadius: '20px'}}/>
+                {props.pic === undefined || !props.pic ? <FontAwesomeIcon icon={faUser} style={{color: 'white', fontSize: '20px', borderRadius: '20px'}}/> : <img style={{width: '50px', borderRadius: '20px'}} src={`https://res.cloudinary.com/drgfyozzd/image/upload/${props.pic}`} alt='this is you' /> }
                     <p style={{color: "white"}}>{props.landlord ? props.landlord : <p>Loading</p> }</p>
                 </div>
 

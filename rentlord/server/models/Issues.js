@@ -6,6 +6,7 @@ const plumbingSchema = require('./plumbingSchema');
 const complaintsSchema = require('./complaintsSchema');
 
 const issueSchema = new Schema({
+    pics: String,
     fromTenantMessage: Array,
     toTenantMessage: Array,
     plumbing: [plumbingSchema],

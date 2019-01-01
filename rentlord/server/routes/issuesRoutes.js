@@ -21,7 +21,8 @@ module.exports = (server) => {
         
         console.log('usas',req.user)
 
-        const issues = new Issues({    
+        const issues = new Issues({
+            pics: '',    
             fromTenantMessage,
             toTenantMessage,
             // electrical: [electricalSchema],
@@ -51,7 +52,7 @@ module.exports = (server) => {
         try {
             const issue = await Issues.findOne({_user: req.user._id})
             console.log('first-iss',issue)
-            res.status(200).json({ messages: issue.fromTenantMessage, plumbing: issue.plumbing, electrical: issue.electrical, carpentry: issue.carpentry, complaints: issue.complaints})
+            res.status(200).json({ messages: issue.fromTenantMessage, plumbing: issue.plumbing, electrical: issue.electrical, carpentry: issue.carpentry, complaints: issue.complaints, pics: issue.picture})
         }
         catch(err) {
             console.log(err)
@@ -117,8 +118,9 @@ module.exports = (server) => {
     server.put('/api/fromTenantMessage', async (req, res) => {
         try {
             const { message } = req.body;
-            console.log()
-            await Issues.findOneAndUpdate({_user: req.user._id}, {$push: {fromTenantMessage: `Tenant ${message}`}})    
+            console.log(req.user)
+            await Issues.findOneAndUpdate({_user: req.user._id}, {$push: {fromTenantMessage: `Tenant ${message}`}})
+            await Issues.findOneAndUpdate({_user: req.user._id}, {$set: {pics: req.user.picture}})
             res.status(202).json(message)
         }
         catch(err) {

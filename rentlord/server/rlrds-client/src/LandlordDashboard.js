@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './Dashboard.css';
-import { faComments, faPaperPlane, faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
+import { faComments, faPaperPlane, faExclamationTriangle, faUser, faDotCircle} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from'@fortawesome/react-fontawesome';
 import axios from 'axios';
 import DropdownButton from 'react-bootstrap/DropdownButton'
@@ -15,6 +15,7 @@ const LandlordDashboard = (props) => {
     const [tenId, setTenId] = useState('');
     const [tempMessage, setTempMessage] = useState('');
     const [click, setClick] = useState(false);
+    const [open, setOpen] = useState(false);
 
     const changeMessage = (e) => {
         e.preventDefault();
@@ -41,6 +42,7 @@ const LandlordDashboard = (props) => {
 
 
  async function tenantMessage(e) {
+     setOpen(true);
     const nameId = e.target.value.split(',')
     const messArr = [];
     setTenId(nameId[1])
@@ -77,41 +79,43 @@ const close = e => {
     e.preventDefault();
     setTenantName('');
     setFromTenantMessage('');
+    setOpen(false);
 }
-
+console.log('props', props.issues)
     return (
         <div className='dashboard-contain'>
-        <SideBar landlord={props.landlord.wholeName} />
+        <SideBar landlord={props.landlord.wholeName} pic={props.landlord.picture} />
 
-        <div className='dash-contain'>
             <div className='dash'>
+            <div className='bar-message'>
                 <div className='top-bar'>
-                    <div className='message-logo'>
+                <h2>Messages</h2>
+    {props.issues ? props.issues.map((item, index) => { return item.pics.length > 0 ? <div className={!open ? 'tenant-message-button' : 'none'}> <div className='message-overlay'></div> <div className='message-image-contain'><img src={`https://res.cloudinary.com/drgfyozzd/image/upload/${item.pics}` } /></div> <p>{item._userName}</p><button  onClick={tenantMessage} value={[item._userName, item._user, item.fromTenantMessage]}>See Messages</button>                <button onClick={close} style={fromTenantMessage ? {borderRadius: '5px', backgroundColor: 'blue', border: 'none', width:'20%', cursor: 'pointer', color: 'white'} : {display: 'none'}}>Close</button> 
+    </div> : <div className={!open ? 'tenant-message-button' : 'none'}><FontAwesomeIcon icon={faUser} style={{ zIndex: '99', color: 'gray', width: '15%', height: '30%', borderRadius: '20px'}}/> <div className='message-overlay'></div> <p>{item._userName}</p><p>No Messages</p></div> }) : null
+                    }
+                    
+            </div>
+                    {/* <div className='message-logo'>
                         <FontAwesomeIcon icon={faComments} style={{color: 'darkGray', fontSize: '40px'}}/>          
                     </div>
+                    
                     <div className='message'>
                         <input onChange={changeMessage} value={message} type='text' placeholder={tenantName.length > 0 ? `Message ${tenantName}` : 'Choose tenant to message'}/>
                         <div  className={click  ? 'paper-click' : 'paper' }>
                             <li><FontAwesomeIcon onClick={sendMessage} icon={faPaperPlane} style={{color: 'darkGray', fontSize: '40px'}}/></li>    
-                        </div>      
-                    </div>
-                    <div className='lanlord'>
-                        <div className='landlord-info'>
-                        <div className='landlord-user-only'>
-                        {props ? <img className="landlord-img" src={`https://res.cloudinary.com/drgfyozzd/image/upload/${props.landlord.picture}`} alt=''/> : null}
-                            <div className='landlord-profile-box'>
-                                <p>Hey {props.landlord.username}!</p>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div className='button-box'>
+                        </div>  
+                        </div>     */}
+                       
+                   
+                
+                {/* <div className='button-box'>
                 <div>
                 <DropdownButton className='tenant-button' id="dropdown-item-button" title={tenantName.length > 0 ? `Messaging ${tenantName}` : "Choose Tenant Here"}>
                     {props.issues ? props.issues.map((item, index) => { return <Dropdown.Item as="button" key={index} onClick={tenantMessage} value={[item._userName, item._user, item.fromTenantMessage]}>{item._userName}</Dropdown.Item>}) :  null}
                 </DropdownButton>
-                <div className={fromTenantMessage ? 'message-box' : null}>
+                </div>
+                </div> */}
+                                <div className={fromTenantMessage ? 'message-box' : null}>
                     <div className='messaging'>
                         {fromTenantMessage ? fromTenantMessage.map((item, index )=> {
                             return <p key={index} style={item.includes('Tenant') ? {backgroundColor: 'lightgray'} : item.includes('You:') ? {color: 'white', backgroundColor: 'blue', alignSelf: 'flex-end'} : null}>{item.replace('Landlord:', 'You') && item.replace('Tenant', `${tenantName}:`)}</p>
@@ -121,18 +125,16 @@ const close = e => {
                         }) : null}
                     </div>
                 </div>
-                <button onClick={close} style={fromTenantMessage ? {borderRadius: '5px', backgroundColor: 'blue', width: '10%', border: 'none', fontSize: '130%', width:'100%', cursor: 'pointer', color: 'white'} : {display: 'none'}}>Close</button> 
-                </div>
+                <button className={!open ? 'none' : 'close-button'} onClick={close}>Pick another tenant to message</button>
+
                 </div>
                 <div className='user-info-contain'>
                     <div className='issues-profile'>
                         <div className='landlord-notifications'>
-                        <button className='show-hide-button' onClick={dropdownPlumbing}>Expand</button> 
-
-                               { props.issues ? props.issues.map((iss, index) => { return <div key={index} className={dropPlumbing ? 'tenant-issues-expand' : 'tenant-issues'}>
+                               { props.issues ? props.issues.map((iss, index) => { return <div key={index} className={iss.plumbing.length > 0 || iss.electrical.length > 0 || iss.carpentry.length > 0 || iss.complaints.length > 0 ? 'tenant-issues-expand' : null } >
                 
                     <div>{iss.plumbing.length > 0 || iss.electrical.length > 0 || iss.carpentry.length > 0 || iss.complaints.length > 0 ? <h3><span>Alert</span><FontAwesomeIcon icon={faExclamationTriangle} style={{color: 'white', fontSize: '15px'}}/>{iss._userName} has {iss.carpentry.length + iss.plumbing.length + iss.electrical.length + iss.complaints.length} issues</h3> : null}</div>
-                    <div className={dropPlumbing === true ? 'shows' : 'hide'}>
+                    <div className='shows'>
                     <div className='iss-list-container'>
                     {iss.plumbing.length > 0 ? <div className='ten-issues'><h3>Plumbing:</h3>{iss.plumbing.map((ish, index) => {return <div key={index} className='ten-issues'><p>{ish.body}</p><div className='issue-buttons'>
                     <button onClick={props.changeSituation} value={[ish._id, ish.pending, iss._user, 'plumbing']} style={ish.pending === true ? {backgroundColor: 'red'} : {backgroundColor: 'rgba(255, 0, 0, 0.2)'}}>Pending</button>
@@ -164,7 +166,6 @@ const close = e => {
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     )
 }

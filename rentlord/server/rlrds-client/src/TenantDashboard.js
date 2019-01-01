@@ -178,8 +178,9 @@ const TenantDashboard = (props) => {
     }
 
     return (
-        <div>
+        <div className='ten-contain'>
             <SideBar />
+        <div>
         <div className='tenant-dash-contain'>
             <div className='dash'>
                 <div className='tenant-user-info-contain'>
@@ -410,6 +411,7 @@ const TenantDashboard = (props) => {
                     </div>
                 </div>
 </div>
+</div>
             <div>
                 <div className={tenantMessage ? 'tenant-message-box' : null}>
                     <div className='tenant-messaging'>
@@ -422,6 +424,7 @@ const TenantDashboard = (props) => {
                     </div>
                 </div>
                 </div>
+
         </div>
     )
 }//els
