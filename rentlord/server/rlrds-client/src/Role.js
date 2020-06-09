@@ -48,13 +48,6 @@ const Role = () => {
 
 
     }
-//test
-    const issue = e => {
-        e.preventDefault();
-      
-    }
-    
-
 
     return (
         <div>
@@ -63,13 +56,13 @@ const Role = () => {
                     <div>
                     <p>I am a Landlord</p>
                         <button type='submit' value='Landlord' onClick={changeRoleLandlord}>
-                        <img  value='Landlord' onClick={changeRoleLandlord} src='https://images.pexels.com/photos/955395/pexels-photo-955395.jpeg?cs=srgb&dl=two-person-in-long-sleeved-shirt-shakehand-955395.jpg&fm=jpg' alt='picture of a handshake'/>
+                        <img  value='Landlord' onClick={changeRoleLandlord} src='https://images.pexels.com/photos/955395/pexels-photo-955395.jpeg?cs=srgb&dl=two-person-in-long-sleeved-shirt-shakehand-955395.jpg&fm=jpg' alt='what a handshake'/>
                         </button>
                     </div>
                     <div value='Tenant'  onClick={changeRoleTenant}>
                         <p>I am a Tenant</p>
                         <button type='submit' value='Tenant' onClick={changeRoleTenant}>
-                        <img src='https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260' alt='picture of an apartment'/>
+                        <img src='https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260' alt='this is an apartment'/>
                         </button>
                     </div>
                     <button className='next' type='submit'>Go to Dashboard</button>
