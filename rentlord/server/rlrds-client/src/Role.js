@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import './Role.css';
@@ -13,26 +13,19 @@ const Role = () => {
     const changeRoleTenant = (e) => {
         e.preventDefault();
         setChooseRole('Tenant')
-        // e.target.style.border = 'blue solid 2px'
 
     }
 
     const changeRoleLandlord = (e) => {
         e.preventDefault();
         setChooseRole('Landlord')
-        // e.target.style.border = 'blue solid 2px'
 
     }
 
 
     const newRole = e => {
         axios.put('/api/role', {role: chooseRole} )
-        // .then(res => {
-        //     console.log(res)
-        //     history.push('/login')
-        // })
         .then(response => {
-            // routing user according to their choice
                     console.log(response)
 
         })

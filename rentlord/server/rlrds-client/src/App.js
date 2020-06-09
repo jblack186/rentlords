@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect} from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Register from './Register';
@@ -39,14 +39,12 @@ const App = e => {
         })
     axios.get('/api/tenant')
         .then(res => {
-            console.log(res.data)
             setTenant(res.data)
         })
 
 
 
 }, [])
-console.log('landlord', landlord)
 const changeRecieved = e => {
   // e.persist();
   const idStatus = e.target.value.split(',')
