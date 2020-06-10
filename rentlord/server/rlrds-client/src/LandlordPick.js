@@ -22,7 +22,7 @@ const LandlordPick = () => {
     console.log(chooseLandlordPick)
 
 
-    // allows user to pick their landlord - will update the tenants array on landlords as well
+    // allows user to pick their landlord - will update the tenants array on landlords as wells
     const picky = e => {
         e.preventDefault();
         console.log(e.target.value)
