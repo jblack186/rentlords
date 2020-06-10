@@ -3,7 +3,6 @@ import './Dashboard.css';
 import { faComments, faPaperPlane, faToilet, faLightbulb, faHammer, faUserFriends, faUser} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from'@fortawesome/react-fontawesome';
 import Lanlord from './img/photo-of-man-taking-selfie-2406949.jpg';
-import ProfilePic from './img/pic.png';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import SideBar from './SideBar';
@@ -11,7 +10,6 @@ import SideBar from './SideBar';
 
 const TenantDashboard = (props) => {
     const [landlord, setLandlord] = useState('');
-    const [tenant, setTenant] = useState('');
     const [plumbing, setPlumbing] = useState('');
     const [electrical, setElectrical] = useState('');
     const [carpentry, setCarpentry] = useState('');
@@ -26,15 +24,9 @@ const TenantDashboard = (props) => {
     const [tempComplaints, setTempComplaints] = useState('');
     const [tempCount, setTempCount] = useState(0);
     const [show, setShow] = useState(false);
-    const [person, setPerson] = useState([])
     const [tempMessage, setTempMessage] = useState('');
     const [click, setClick] = useState(false);
 
-    const close = e => {
-        e.preventDefault();
-        setTenant('');
-        setTenantMessage('');
-    }
     
     useEffect(() => {
         localStorage.setItem('Role', 'Tenant')
@@ -206,7 +198,7 @@ const TenantDashboard = (props) => {
                                 <div className={show === false ? 'hide' : 'issues-list-contain'}>
                                 <li>
                                 <div className='amneties-contain'>
-                                <h3 className={issues && issues.plumbing.length > 0 || tempPlumbing.length > 0 ? 'issue-header' : 'hide'}>Your Plumbing Issues</h3>
+                                <h3 className={(issues && issues.plumbing.length > 0) || tempPlumbing.length > 0 ? 'issue-header' : 'hide'}>Your Plumbing Issues</h3>
                                 {issues ? issues.plumbing.map(iss => {
                                 return <div className={show === false ? '.hide-map-contain' : 'map-contain'}>
                                         <p className='body'>{iss.body}</p>
@@ -234,9 +226,9 @@ const TenantDashboard = (props) => {
                                 </li>
                                 <li>
                                 <div className='amneties-contain'>
-                                <h3 className={issues && issues.electrical.length > 0 || tempElectrical.length > 0 ? 'issue-header' : 'hide'}>Your Electrical Issues</h3>
-                                {issues ? issues.electrical.map(iss => {
-                                return <div className='map-contain'>
+                                <h3 className={(issues && issues.electrical.length) > 0 || tempElectrical.length > 0 ? 'issue-header' : 'hide'}>Your Electrical Issues</h3>
+                                {issues ? issues.electrical.map((iss, index) => {
+                                return <div key={index} className='map-contain'>
                                         <p className='body'>{iss.body}</p>
                                         <div className='situation'>
                                             <p className={iss.pending === true ? null : 'bye'}>Pending</p>
@@ -262,7 +254,7 @@ const TenantDashboard = (props) => {
                                 </li>
                                 <li>
                                 <div className='amneties-contain'>
-                                <h3 className={issues && issues.carpentry.length > 0 || tempCarpentry.length > 0 ? 'issue-header' : 'hide'}>Your Carpentry Issues</h3>
+                                <h3 className={(issues && issues.carpentry.length > 0) || tempCarpentry.length > 0 ? 'issue-header' : 'hide'}>Your Carpentry Issues</h3>
                                 {issues ? issues.carpentry.map(iss => {
                                 return <div className='map-contain'>
                                         <p className='body'>{iss.body}</p>
@@ -291,7 +283,7 @@ const TenantDashboard = (props) => {
 
                                 <li>
                                 <div className='amneties-contain'>
-                                <h3 className={issues && issues.complaints.length > 0 || tempComplaints.length > 0 ? 'issue-header' : 'hide'}>Your Complaints Issues</h3>
+                                <h3 className={(issues && issues.complaints.length > 0) || tempComplaints.length > 0 ? 'issue-header' : 'hide'}>Your Complaints Issues</h3>
                                 {issues ? issues.complaints.map(iss => {
                                 return <div className='map-contain'>
                                         <p className='body'>{iss.body}</p>
@@ -323,8 +315,7 @@ const TenantDashboard = (props) => {
                         </div>
                         </div>
                         <div className='user'>
-                            {props.tenant && props.tenant.picture.length > 0 ? <img className='profile-img' src={`https://res.cloudinary.com/drgfyozzd/image/upload/${props.tenant.picture}`} /> : <FontAwesomeIcon icon={faUser} style={{color: 'white', fontSize: '200px', marginTop: '250px', border: 'solid 1px', padding: '10px', borderRadius: '20px'}}/>          
-}                               {!props.tenant || props.tenant.picture.length <= 0 ? <Link to='/settings'><p>Upload Picture</p></Link> : null}
+                            {props.tenant && props.tenant.picture.length > 0 ? <img className='profile-img' src={`https://res.cloudinary.com/drgfyozzd/image/upload/${props.tenant.picture}`} alt='looking great'  /> : <FontAwesomeIcon icon={faUser} style={{color: 'white', fontSize: '200px', marginTop: '250px', border: 'solid 1px', padding: '10px', borderRadius: '20px'}}/>}                               {!props.tenant || props.tenant.picture.length <= 0 ? <Link to='/settings'><p>Upload Picture</p></Link> : null}
                             <div className='profile-box'>
                                 <p>{props.tenant ? props.tenant.wholeName : null}</p>
                                 <address className='address'> 18 A st Derby, CT, 06418</address>
@@ -414,7 +405,7 @@ const TenantDashboard = (props) => {
                     </div>
                     <div className='lanlord'>
                         <div className='landlord-info'>
-                            <img className='landlord-img' src={Lanlord} />
+                            <img className='landlord-img' src={Lanlord} alt='your landlord'/>
                             <p>Your Lanlord, {landlord.username}</p>
                         </div>
                     </div>
@@ -423,8 +414,8 @@ const TenantDashboard = (props) => {
             <div>
                 <div className={tenantMessage ? 'tenant-message-box' : null}>
                     <div className='tenant-messaging'>
-                        {tenantMessage ? tenantMessage.map(item => { 
-                            return item.replace('Tenant', 'for') &&<p style={item.includes('Tenant') ? {backgroundColor: 'blue', color: 'white', alignSelf: 'flex-end'} : item.includes('You:') ? { backgroundColor: 'grey'} : null}>{item.replace('You:', `${landlord.username}:`).replace('Tenant', 'You:') }</p>
+                        {tenantMessage ? tenantMessage.map((item, index) => { 
+                            return item.replace('Tenant', 'for') && <p key={index} style={item.includes('Tenant') ? {backgroundColor: 'blue', color: 'white', alignSelf: 'flex-end'} : item.includes('You:') ? { backgroundColor: 'grey'} : null}>{item.replace('You:', `${landlord.username}:`).replace('Tenant', 'You:') }</p>
                         }) : null} 
                         {tempMessage && props.tenant ? tempMessage.map(mess => {
                             return <div style={{alignSelf: 'flex-end'}}> <p style={{color: 'white', backgroundColor: 'blue', paddingBottom: '0px;' }}>You: {mess} </p></div>
