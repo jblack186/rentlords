@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './Dashboard.css';
-import { faComments, faPaperPlane, faToilet, faLightbulb, faHammer, faUserFriends, faPersonBooth, faUser} from '@fortawesome/free-solid-svg-icons'
+import { faComments, faPaperPlane, faToilet, faLightbulb, faHammer, faUserFriends, faUser} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from'@fortawesome/react-fontawesome';
 import Lanlord from './img/photo-of-man-taking-selfie-2406949.jpg';
 import ProfilePic from './img/pic.png';
@@ -30,7 +30,6 @@ const TenantDashboard = (props) => {
     const [tempMessage, setTempMessage] = useState('');
     const [click, setClick] = useState(false);
 
-console.log(click)
     const close = e => {
         e.preventDefault();
         setTenant('');
@@ -42,7 +41,6 @@ console.log(click)
     }, [])
 
 
-console.log(tenantMessage)
     const changePlumbing = (e) => {
         e.preventDefault();
         setPlumbing(e.target.value)
@@ -82,36 +80,18 @@ console.log(tenantMessage)
                 
             })
             .catch(err => {
-                console.log(err)
             })
         
 
         axios.get('/api/tenant-issues')
             .then(res => {
-                console.log(res)
                 setTenantMessage(res.data.messages)
                 setIssues(res.data)
             })
             .catch((err) => {
-                console.log(err)
             })
         
     }, [])
-    console.log('iss',issues)
-
-    // useEffect(() => {
-
-    //     axios.get('/api/tenant-issues')
-    //         .then(res => {
-    //             console.log(res.data)
-    //             setTempPlumbing(res.data.plumbing)
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-        
-    // }, [])
-
 
     
 
@@ -120,12 +100,10 @@ console.log(tenantMessage)
         if(plumbing.length > 0) {
         axios.put('/api/plumbing', { plumbing: plumbing})
         .then(response => {
-            console.log(response)
             setTempPlumbing([...tempPlumbing, response.data])
             setTempCount(tempCount + 1)
           })
         .catch(error => {
-            console.log(error)
         })
         setPlumbing('')
     }
@@ -137,13 +115,11 @@ console.log(tenantMessage)
         if(electrical.length > 0) {
         axios.put('/api/electrical', { electrical: electrical})
         .then(response => {
-            console.log(response)
             setTempElectrical([...tempElectrical, response.data])
             setTempCount(tempCount + 1)
 
           })
         .catch(error => {
-            console.log(error)
         })
         setElectrical('')
     }
@@ -154,13 +130,11 @@ console.log(tenantMessage)
         if(carpentry.length > 0) {
         axios.put('/api/carpentry', {carpentry:carpentry})
         .then(response => {
-            console.log(response)
             setTempCarpentry([...tempCarpentry, response.data])
             setTempCount(tempCount + 1)
 
           })
         .catch(error => {
-            console.log(error)
         })
         setCarpentry('')
     }
@@ -170,13 +144,11 @@ console.log(tenantMessage)
         if(complaints.length > 0) {
         axios.put('/api/complaints', { complaints: complaints})
         .then(response => {
-            console.log(response)
             setTempComplaints([...tempComplaints, response.data])
             setTempCount(tempCount + 1)
 
           })
         .catch(error => {
-            console.log(error)
         })
         setComplaints('')
     }
@@ -188,13 +160,11 @@ console.log(tenantMessage)
         axios.put('/api/fromTenantmessage', { message: fromTenantmessage})
         .then(response => {
             setClick(!click)
-            console.log(response)
             setTempMessage([...tempMessage, response.data])
 
 
           })
         .catch(error => {
-            console.log(error)
         })
         setFromTenantMessage('')
     }
