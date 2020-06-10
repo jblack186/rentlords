@@ -107,16 +107,16 @@ const close = e => {
                 </div>
                 <div className='button-box'>
                 <DropdownButton className='tenant-button' id="dropdown-item-button" title={tenantName.length > 0 ? `Messaging ${tenantName}` : "Choose Tenant Here"}>
-                    {props.issues ? props.issues.map(item => { return <Dropdown.Item as="button" onClick={tenantMessage} value={[item._userName, item._user, item.fromTenantMessage]}>{item._userName}</Dropdown.Item>}) :  null}
+                    {props.issues ? props.issues.map((item, index) => { return <Dropdown.Item as="button" key={index} onClick={tenantMessage} value={[item._userName, item._user, item.fromTenantMessage]}>{item._userName}</Dropdown.Item>}) :  null}
                 </DropdownButton>
                 <div>
                 <div className={fromTenantMessage ? 'message-box' : null}>
                     <div className='messaging'>
-                        {fromTenantMessage ? fromTenantMessage.map(item => {
-                            return <p style={item.includes('Tenant') ? {backgroundColor: 'lightgray'} : item.includes('You:') ? {color: 'white', backgroundColor: 'blue', alignSelf: 'flex-end'} : null}>{item.replace('Landlord:', 'You') && item.replace('Tenant', `${tenantName}:`)}</p>
+                        {fromTenantMessage ? fromTenantMessage.map((item, index )=> {
+                            return <p key={index} style={item.includes('Tenant') ? {backgroundColor: 'lightgray'} : item.includes('You:') ? {color: 'white', backgroundColor: 'blue', alignSelf: 'flex-end'} : null}>{item.replace('Landlord:', 'You') && item.replace('Tenant', `${tenantName}:`)}</p>
                         }) : null} 
-                        {tempMessage && tenantName ? tempMessage.map(mess => {
-                            return <div style={{alignSelf: 'flex-end'}}> <p style={{color: 'white', backgroundColor: 'blue', paddingBottom: '0px;' }}>You: {mess} </p></div>
+                        {tempMessage && tenantName ? tempMessage.map((mess, index) => {
+                            return <div key={index} style={{alignSelf: 'flex-end'}}> <p style={{color: 'white', backgroundColor: 'blue', paddingBottom: '0px;' }}>You: {mess} </p></div>
                         }) : null}
                     </div>
                 </div>
@@ -128,24 +128,24 @@ const close = e => {
                         <div className='landlord-notifications'>
                         <button className='show-hide-button' onClick={dropdownPlumbing}>Expand</button> 
 
-                               { props.issues ? props.issues.map(iss => { return <div className={dropPlumbing ? 'tenant-issues-expand' : 'tenant-issues'}>
+                               { props.issues ? props.issues.map((iss, index) => { return <div key={index} className={dropPlumbing ? 'tenant-issues-expand' : 'tenant-issues'}>
                 
                     <div>{iss.plumbing.length > 0 || iss.electrical.length > 0 || iss.carpentry.length > 0 || iss.complaints.length > 0 ? <h3><span>Alert</span><FontAwesomeIcon icon={faExclamationTriangle} style={{color: 'white', fontSize: '15px'}}/>{iss._userName} has {iss.carpentry.length + iss.plumbing.length + iss.electrical.length + iss.complaints.length} issues</h3> : null}</div>
                     <div className={dropPlumbing === true ? 'shows' : 'hide'}>
                     <div className='iss-list-container'>
-                    {iss.plumbing.length > 0 ? <div className='ten-issues'><h3>Plumbing:</h3>{iss.plumbing.map(ish => {return <div className='ten-issues'><p>{ish.body}</p><div className='issue-buttons'>
+                    {iss.plumbing.length > 0 ? <div className='ten-issues'><h3>Plumbing:</h3>{iss.plumbing.map((ish, index) => {return <div key={index} className='ten-issues'><p>{ish.body}</p><div className='issue-buttons'>
                     <button onClick={props.changeSituation} value={[ish._id, ish.pending, iss._user, 'plumbing']} style={ish.pending === true ? {backgroundColor: 'red'} : {backgroundColor: 'rgba(255, 0, 0, 0.2)'}}>Pending</button>
                     <button onClick={props.changeRecieved} value={[ish._id, ish.recieved, iss._user, 'plumbing']} style={ish.recieved === true ? {backgroundColor: 'yellow'} : {backgroundColor: 'rgba(255,255,0, 0.1)'}}>Recieved</button>
                     <button onClick={props.changeCompleted} value={[ish._id, ish.completed, iss._user, 'plumbing']} style={ish.completed === true ? {backgroundColor: 'green'} : {backgroundColor: 'rgba(0, 255, 0, 0.1)'}}>Completed</button></div></div>})}</div> : null}
-                    {iss.electrical.length > 0 ? <div className='ten-issues'><h3>Electrical:</h3>{iss.electrical.map(ish => {return <div className='ten-issues'><p>{ish.body}</p><div className='issue-buttons'>
+                    {iss.electrical.length > 0 ? <div className='ten-issues'><h3>Electrical:</h3>{iss.electrical.map((ish, index) => {return <div key={index} className='ten-issues'><p>{ish.body}</p><div className='issue-buttons'>
                     <button onClick={props.changeSituation} value={[ish._id, ish.pending, iss._user, 'electrical']} style={ish.pending === true ? {backgroundColor: 'red'} : {backgroundColor: 'rgba(255, 0, 0, 0.2)'}}>Pending</button>
                     <button onClick={props.changeRecieved} value={[ish._id, ish.recieved, iss._user, 'electrical']} style={ish.recieved === true ? {backgroundColor: 'yellow'} : {backgroundColor: 'rgba(255,255,0, 0.1)'}}>Recieved</button>
                     <button onClick={props.changeCompleted} value={[ish._id, ish.completed, iss._user, 'electrical']} style={ish.completed === true ? {backgroundColor: 'green'} : {backgroundColor: 'rgba(0, 255, 0, 0.1)'}}>Completed</button></div></div>})}</div> : null}
-                    {iss.carpentry.length > 0 ? <div className='ten-issues'><h3>Carpentry:</h3>{iss.carpentry.map(ish => {return <div className='ten-issues'><p>{ish.body}</p><div className='issue-buttons'>
+                    {iss.carpentry.length > 0 ? <div className='ten-issues'><h3>Carpentry:</h3>{iss.carpentry.map((ish, index) => {return <div key={index} className='ten-issues'><p>{ish.body}</p><div className='issue-buttons'>
                     <button onClick={props.changeSituation} value={[ish._id, ish.pending, iss._user, 'carpentry']} style={ish.pending === true ? {backgroundColor: 'red'} : {backgroundColor: 'rgba(255, 0, 0, 0.2)'}}>Pending</button>
                     <button onClick={props.changeRecieved} value={[ish._id, ish.recieved, iss._user, 'carpentry']} style={ish.recieved === true ? {backgroundColor: 'yellow'} : {backgroundColor: 'rgba(255,255,0, 0.1)'}}>Recieved</button>
                     <button onClick={props.changeCompleted} value={[ish._id, ish.completed, iss._user, 'carpentry']} style={ish.completed === true ? {backgroundColor: 'green'} : {backgroundColor: 'rgba(0, 255, 0, 0.1)'}}>Completed</button></div></div>})}</div> : null}
-                    {iss.complaints.length > 0 ? <div className='ten-issues'><h3>Complaints:</h3>{iss.complaints.map((ish, index) => {return <div className='ten-issues'><p>{ish.body}</p><div className='issue-buttons'>
+                    {iss.complaints.length > 0 ? <div className='ten-issues'><h3>Complaints:</h3>{iss.complaints.map((ish, index) => {return <div key={index} className='ten-issues'><p>{ish.body}</p><div className='issue-buttons'>
                     
                     <button onClick={props.changeSituation} value={[ish._id, ish.pending, iss._user, 'complaints']} style={ish.pending === true ? {backgroundColor: 'red'} : ish.recieved === true && ish.completed === true ? {backgroundColor: 'rgba(255, 0, 0, 0.2)'} : {backgroundColor: 'rgba(255, 0, 0, 0.2)'}}>Pending</button>
                     <button onClick={props.changeRecieved} value={[ish._id, ish.recieved, iss._user, 'complaints']} className={ish.recieved === true ? "yellow" : ish.completed ===  true && ish.pending === true ? "dimYellow" : "dimYellow"} >Recieved</button>

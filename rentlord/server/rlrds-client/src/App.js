@@ -64,7 +64,6 @@ const changeRecieved = e => {
 }
 
 const changeCompleted = (e) => {
-  // e.persist();
   const idStatus = e.target.value.split(',')
   if (idStatus[1] === 'true') {
   } else {

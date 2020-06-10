@@ -14,6 +14,8 @@ const Settings = (props) => {
 //cloudinary upload
 const uploadImage = async e => {
     const files = e.target.files
+    console.log(files[0].size)
+    if (files[0].size < 24000) {
     const data = new FormData()
     data.append('file', files[0])
     data.append('upload_preset', 'rentlords')
@@ -30,6 +32,9 @@ const uploadImage = async e => {
     setImage(file.secure_url);
     setImageName(`${file.public_id}.${file.format}`)
     setLoading(false)
+    } else {
+        alert('The file you have chosen is to big. Must be under __ ')
+    }
 }
 
 
