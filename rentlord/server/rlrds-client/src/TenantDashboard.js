@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import './Dashboard.css';
-import { faComments, faPaperPlane, faToilet, faLightbulb, faHammer, faUserFriends, faUser} from '@fortawesome/free-solid-svg-icons'
+import { faComments, faPaperPlane, faToilet, faLightbulb, faHammer, faUserFriends, faPersonBooth, faUser} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from'@fortawesome/react-fontawesome';
 import Lanlord from './img/photo-of-man-taking-selfie-2406949.jpg';
+import ProfilePic from './img/pic.png';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import SideBar from './SideBar';
@@ -10,6 +11,7 @@ import SideBar from './SideBar';
 
 const TenantDashboard = (props) => {
     const [landlord, setLandlord] = useState('');
+    const [tenant, setTenant] = useState('');
     const [plumbing, setPlumbing] = useState('');
     const [electrical, setElectrical] = useState('');
     const [carpentry, setCarpentry] = useState('');
@@ -24,15 +26,23 @@ const TenantDashboard = (props) => {
     const [tempComplaints, setTempComplaints] = useState('');
     const [tempCount, setTempCount] = useState(0);
     const [show, setShow] = useState(false);
+    const [person, setPerson] = useState([])
     const [tempMessage, setTempMessage] = useState('');
     const [click, setClick] = useState(false);
 
+console.log(click)
+    const close = e => {
+        e.preventDefault();
+        setTenant('');
+        setTenantMessage('');
+    }
     
     useEffect(() => {
         localStorage.setItem('Role', 'Tenant')
     }, [])
 
 
+console.log(tenantMessage)
     const changePlumbing = (e) => {
         e.preventDefault();
         setPlumbing(e.target.value)
@@ -72,19 +82,35 @@ const TenantDashboard = (props) => {
                 
             })
             .catch(err => {
+                console.log(err)
             })
         
 
         axios.get('/api/tenant-issues')
             .then(res => {
+                console.log(res)
                 setTenantMessage(res.data.messages)
                 setIssues(res.data)
             })
             .catch((err) => {
+                console.log(err)
             })
         
     }, [])
+    console.log('iss',issues)
 
+    // useEffect(() => {
+
+    //     axios.get('/api/tenant-issues')
+    //         .then(res => {
+    //             console.log(res.data)
+    //             setTempPlumbing(res.data.plumbing)
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //         })
+        
+    // }, [])
 
 
     
@@ -94,10 +120,12 @@ const TenantDashboard = (props) => {
         if(plumbing.length > 0) {
         axios.put('/api/plumbing', { plumbing: plumbing})
         .then(response => {
+            console.log(response)
             setTempPlumbing([...tempPlumbing, response.data])
             setTempCount(tempCount + 1)
           })
         .catch(error => {
+            console.log(error)
         })
         setPlumbing('')
     }
@@ -109,11 +137,13 @@ const TenantDashboard = (props) => {
         if(electrical.length > 0) {
         axios.put('/api/electrical', { electrical: electrical})
         .then(response => {
+            console.log(response)
             setTempElectrical([...tempElectrical, response.data])
             setTempCount(tempCount + 1)
 
           })
         .catch(error => {
+            console.log(error)
         })
         setElectrical('')
     }
@@ -124,11 +154,13 @@ const TenantDashboard = (props) => {
         if(carpentry.length > 0) {
         axios.put('/api/carpentry', {carpentry:carpentry})
         .then(response => {
+            console.log(response)
             setTempCarpentry([...tempCarpentry, response.data])
             setTempCount(tempCount + 1)
 
           })
         .catch(error => {
+            console.log(error)
         })
         setCarpentry('')
     }
@@ -138,11 +170,13 @@ const TenantDashboard = (props) => {
         if(complaints.length > 0) {
         axios.put('/api/complaints', { complaints: complaints})
         .then(response => {
+            console.log(response)
             setTempComplaints([...tempComplaints, response.data])
             setTempCount(tempCount + 1)
 
           })
         .catch(error => {
+            console.log(error)
         })
         setComplaints('')
     }
@@ -154,11 +188,13 @@ const TenantDashboard = (props) => {
         axios.put('/api/fromTenantmessage', { message: fromTenantmessage})
         .then(response => {
             setClick(!click)
+            console.log(response)
             setTempMessage([...tempMessage, response.data])
 
 
           })
         .catch(error => {
+            console.log(error)
         })
         setFromTenantMessage('')
     }
@@ -200,7 +236,7 @@ const TenantDashboard = (props) => {
                                 <div className={show === false ? 'hide' : 'issues-list-contain'}>
                                 <li>
                                 <div className='amneties-contain'>
-                                <h3 className={(issues && issues.plumbing.length > 0) || tempPlumbing.length > 0 ? 'issue-header' : 'hide'}>Your Plumbing Issues</h3>
+                                <h3 className={issues && issues.plumbing.length > 0 || tempPlumbing.length > 0 ? 'issue-header' : 'hide'}>Your Plumbing Issues</h3>
                                 {issues ? issues.plumbing.map(iss => {
                                 return <div className={show === false ? '.hide-map-contain' : 'map-contain'}>
                                         <p className='body'>{iss.body}</p>
@@ -228,7 +264,7 @@ const TenantDashboard = (props) => {
                                 </li>
                                 <li>
                                 <div className='amneties-contain'>
-                                <h3 className={(issues && issues.electrical.length > 0) || tempElectrical.length > 0 ? 'issue-header' : 'hide'}>Your Electrical Issues</h3>
+                                <h3 className={issues && issues.electrical.length > 0 || tempElectrical.length > 0 ? 'issue-header' : 'hide'}>Your Electrical Issues</h3>
                                 {issues ? issues.electrical.map(iss => {
                                 return <div className='map-contain'>
                                         <p className='body'>{iss.body}</p>
@@ -256,7 +292,7 @@ const TenantDashboard = (props) => {
                                 </li>
                                 <li>
                                 <div className='amneties-contain'>
-                                <h3 className={(issues && issues.carpentry.length > 0) || tempCarpentry.length > 0 ? 'issue-header' : 'hide'}>Your Carpentry Issues</h3>
+                                <h3 className={issues && issues.carpentry.length > 0 || tempCarpentry.length > 0 ? 'issue-header' : 'hide'}>Your Carpentry Issues</h3>
                                 {issues ? issues.carpentry.map(iss => {
                                 return <div className='map-contain'>
                                         <p className='body'>{iss.body}</p>
@@ -285,7 +321,7 @@ const TenantDashboard = (props) => {
 
                                 <li>
                                 <div className='amneties-contain'>
-                                <h3 className={(issues && issues.complaints.length > 0) || tempComplaints.length > 0 ? 'issue-header' : 'hide'}>Your Complaints Issues</h3>
+                                <h3 className={issues && issues.complaints.length > 0 || tempComplaints.length > 0 ? 'issue-header' : 'hide'}>Your Complaints Issues</h3>
                                 {issues ? issues.complaints.map(iss => {
                                 return <div className='map-contain'>
                                         <p className='body'>{iss.body}</p>
@@ -317,7 +353,7 @@ const TenantDashboard = (props) => {
                         </div>
                         </div>
                         <div className='user'>
-                            {props.tenant && props.tenant.picture.length > 0 ? <img className='profile-img' src={`https://res.cloudinary.com/drgfyozzd/image/upload/${props.tenant.picture}`} alt='your profile pic' /> : <FontAwesomeIcon icon={faUser} style={{color: 'white', fontSize: '200px', marginTop: '250px', border: 'solid 1px', padding: '10px', borderRadius: '20px'}}/>          
+                            {props.tenant && props.tenant.picture.length > 0 ? <img className='profile-img' src={`https://res.cloudinary.com/drgfyozzd/image/upload/${props.tenant.picture}`} /> : <FontAwesomeIcon icon={faUser} style={{color: 'white', fontSize: '200px', marginTop: '250px', border: 'solid 1px', padding: '10px', borderRadius: '20px'}}/>          
 }                               {!props.tenant || props.tenant.picture.length <= 0 ? <Link to='/settings'><p>Upload Picture</p></Link> : null}
                             <div className='profile-box'>
                                 <p>{props.tenant ? props.tenant.wholeName : null}</p>
@@ -408,7 +444,7 @@ const TenantDashboard = (props) => {
                     </div>
                     <div className='lanlord'>
                         <div className='landlord-info'>
-                            <img className='landlord-img' src={Lanlord} alt='lanlords face' />
+                            <img className='landlord-img' src={Lanlord} />
                             <p>Your Lanlord, {landlord.username}</p>
                         </div>
                     </div>

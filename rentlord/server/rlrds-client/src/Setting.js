@@ -1,15 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { Dropdown, Form, Button } from 'react-bootstrap';
+import { withRouter } from 'react-router';
 import './Setting.css';
 import SideBar from './SideBar';
 
-//
+
 const Settings = (props) => {
+    const [file, setFile] = useState('');;
     const [loading, setLoading] = useState(false)
     const [image, setImage] = useState('')
     const [imageName, setImageName] = useState('')
+    const [userImage, setUserImage] = useState('')
+    const [userId, setUserId] = useState('')
+    // const [userPic, setUserPic] = useState(props.landlord.picture)
     const [newPic, setNewPic] = useState(false)
     
+console.log(userImage.length)
+
+console.log(image)
 //cloudinary upload
 const uploadImage = async e => {
     const files = e.target.files
@@ -38,15 +48,16 @@ const uploadImage = async e => {
         axios.put('/api/picture', { url: imageName } )
         .then(res => {
             if(res.status === 200) {
+                console.log(res)
+              setUserImage(image)
               setNewPic(true)
             }
         })
         .catch(err =>
-            console.log(err)
-        )
-        
+            console.log(err))
+     
   }
-
+console.log(imageName)
 
         return (
             <div className='setting-contain'>

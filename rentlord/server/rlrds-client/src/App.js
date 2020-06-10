@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import Register from './Register';
 import Login from './Login';
 import { Route } from 'react-router-dom';
 import TenantDashboard from './TenantDashboard';
@@ -10,7 +11,7 @@ import LandlordPick from './LandlordPick';
 import Setting from './Setting';
 import axios from 'axios';
 
-//jg
+
 
 const App = e => {
     const [landlord, setLandlord] = useState('');
@@ -38,16 +39,22 @@ const App = e => {
         })
     axios.get('/api/tenant')
         .then(res => {
+            console.log(res.data)
             setTenant(res.data)
         })
 
 
 
 }, [])
+console.log('landlord', landlord)
 const changeRecieved = e => {
+  // e.persist();
   const idStatus = e.target.value.split(',')
+  var status = null
   if (idStatus[1] === 'true') {
+      status = true
   } else {
+      status = false
   }
   axios.put('/api/recieved', {ids: idStatus[0], _user: idStatus[2], situation: idStatus[3]})
       .then((res)=> {
@@ -69,9 +76,13 @@ const changeRecieved = e => {
 }
 
 const changeCompleted = (e) => {
+  // e.persist();
   const idStatus = e.target.value.split(',')
+  var status = null
   if (idStatus[1] === 'true') {
+      status = true
   } else {
+      status = false
   }
   axios.put('/api/completed', {ids: idStatus[0], _user: idStatus[2], situation: idStatus[3]})
       .then(res => {
@@ -95,8 +106,11 @@ const changeSituation = e => {
 
   e.persist();
   const idStatus = e.target.value.split(',')
+  var status = null
   if (idStatus[1] === 'true') {
+      status = true
   } else {
+      status = false
   }
   axios.put('/api/pending', {ids: idStatus[0], _user: idStatus[2], situation: idStatus[3]})
       .then(res => {
@@ -121,6 +135,7 @@ const changeSituation = e => {
 
   return (
     <div>
+            <Route exact path='/register' render= {(props) => { return <Register  {...props} />}} />
             <Route exact path='/login' render= {(props) => { return <Login  {...props}  />}} />
             <Route exact path='/tenant-dashboard' render= {(props) => { return <TenantDashboard tenant={tenant} {...props}  />}} />
             <Route exact path='/landlord-dashboard' render= {(props) => { return <LandlordDashboard changeSituation={changeSituation} changeCompleted={changeCompleted} changeRecieved={changeRecieved} landlord={landlord} issues={issues} {...props}  />}} />
