@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 
 const LandlordPick = () => {
     const [chooseLandlordPick, setChooseLandlordPick] = useState('');
-    const [pick, setPick] = useState('');
     const history = useHistory();
 
     useEffect(() => {
@@ -22,25 +21,8 @@ const LandlordPick = () => {
 
     console.log(chooseLandlordPick)
 
-    const newLandlordPick = e => {
-        e.preventDefault();
-        axios.put('/api/role', {role: chooseLandlordPick} )
-        .then(response => {
-            //routing user according to their choice
-            if(chooseLandlordPick === 'Tenant') {
-                history.push('/tenant-dashboard')
-            } else {
-                history.push('/landlord-dashboard')
-            }
-            console.log(response)
-        
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }
 
-    // allows user to pick their landlord - will update the tenants array on landlords as well
+    // allows user to pick their landlord - will update the tenants array on landlords as wells
     const picky = e => {
         e.preventDefault();
         console.log(e.target.value)

@@ -30,11 +30,6 @@ const expressLayouts = require('express-ejs-layouts');
 
 
 
-//yo
-
-// server.use(helmet());
-// server.use(express.json());
-
 server.use(bodyParser.json());
 
 server.use(

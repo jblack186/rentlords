@@ -1,8 +1,6 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import './SideBar.css'
-import LandlordDashboard from './LandlordDashboard';
-import TenantDashboard from './TenantDashboard';
 
 const SideBar = (props) => {
 

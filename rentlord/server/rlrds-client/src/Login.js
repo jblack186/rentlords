@@ -1,28 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
-import { Dropdown, Form, Button } from 'react-bootstrap';
+import React, {useState} from 'react';
 import { withRouter } from 'react-router';
 import './Register.css';
 import GoogleButton from 'react-google-button'
 
 const Login = (props) => {
-    const [role, setRole] = useState('');
-    const [password, setPassword] = useState('');
-    const history = useHistory();
-    const [token, setToken] = useState('');;
+    const [token] = useState('');;
 
-    const changeRole = (e) => {
-        e.preventDefault();
-        setRole(e.target.value)
-
-    }
-
-    const changePassword = (e) => {
-        e.preventDefault();
-        setPassword(e.target.value)
-
-    }
 
         
 console.log(token)
@@ -38,7 +21,6 @@ console.log(token)
                             onClick={() => { console.log('Google button clicked') }}
                         />
                            </a>
-                            {/* <button type='submit'>Add</button> */}
                         </div>
                     </form>
                 </div>
