@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import './Dashboard.css';
 import { faComments, faPaperPlane, faToilet, faLightbulb, faHammer, faUserFriends, faUser} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from'@fortawesome/react-fontawesome';
-import Lanlord from './img/photo-of-man-taking-selfie-2406949.jpg';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import SideBar from './SideBar';
@@ -405,7 +404,7 @@ const TenantDashboard = (props) => {
                     </div>
                     <div className='lanlord'>
                         <div className='landlord-info'>
-                            <img className='landlord-img' src={Lanlord} alt='your landlord'/>
+                            <img className='landlord-img' src='' alt='your landlord'/>
                             <p>Your Lanlord, {landlord.username}</p>
                         </div>
                     </div>
@@ -422,7 +421,6 @@ const TenantDashboard = (props) => {
                         }) : null}
                     </div>
                 </div>
-                {/* <button onClick={close} style={tenantMessage ? {borderRadius: '5px', backgroundColor: 'rgb(73, 95, 93)', width: '300px', border: 'none'} : {display: 'none'}}>Close</button>  */}
                 </div>
         </div>
     )
