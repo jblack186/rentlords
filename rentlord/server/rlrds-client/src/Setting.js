@@ -1,28 +1,21 @@
-import React, {useState, useEffect} from 'react';
-import { useHistory } from 'react-router-dom';
+import React, {useState} from 'react';
 import axios from 'axios';
-import { Dropdown, Form, Button } from 'react-bootstrap';
-import { withRouter } from 'react-router';
 import './Setting.css';
 import SideBar from './SideBar';
 
 
 const Settings = (props) => {
-    const [file, setFile] = useState('');;
     const [loading, setLoading] = useState(false)
     const [image, setImage] = useState('')
     const [imageName, setImageName] = useState('')
-    const [userImage, setUserImage] = useState('')
-    const [userId, setUserId] = useState('')
-    // const [userPic, setUserPic] = useState(props.landlord.picture)
     const [newPic, setNewPic] = useState(false)
     
-console.log(userImage.length)
 
-console.log(image)
 //cloudinary upload
 const uploadImage = async e => {
     const files = e.target.files
+    console.log(files[0].size)
+    if (files[0].size < 24000) {
     const data = new FormData()
     data.append('file', files[0])
     data.append('upload_preset', 'rentlords')
@@ -39,6 +32,9 @@ const uploadImage = async e => {
     setImage(file.secure_url);
     setImageName(`${file.public_id}.${file.format}`)
     setLoading(false)
+    } else {
+        alert('The file you have chosen is to big. Must be under __ ')
+    }
 }
 
 
@@ -48,8 +44,6 @@ const uploadImage = async e => {
         axios.put('/api/picture', { url: imageName } )
         .then(res => {
             if(res.status === 200) {
-                console.log(res)
-              setUserImage(image)
               setNewPic(true)
             }
         })
@@ -57,7 +51,6 @@ const uploadImage = async e => {
             console.log(err))
      
   }
-console.log(imageName)
 
         return (
             <div className='setting-contain'>

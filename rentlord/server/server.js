@@ -12,13 +12,6 @@ server.use(helmet());
 server.use(express.json());
 server.use(cors());
 
-// server.use(cors({
-//   'allowedHeaders': ['Content-Type'],
-//   // 'origin': '*',
-//   'preflightContinue': true,
-//   'Access-Control-Allow-Origin': '*'  
-//   //put development heroku link here, * wildcard bad idea, then set up for www.tacklemytrade.com, once we know it works. in access-control-allow-origin 
-// }));
 
 const cookieSession = require('cookie-session');
 const passport = require('passport');
@@ -30,10 +23,6 @@ const expressLayouts = require('express-ejs-layouts');
 
 
 
-//yo
-
-// server.use(helmet());
-// server.use(express.json());
 
 server.use(bodyParser.json());
 
