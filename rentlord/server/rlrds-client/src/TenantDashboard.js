@@ -378,7 +378,7 @@ const TenantDashboard = (props) => {
                                                 Complaints
                                         </div>
                                         <div className='card-back'>
-                                            <p>What are the complaints?</p>
+                                            <p>What are the complaintss?</p>
                                             <form>
                                             <textarea onChange={changeComplaints} value={complaints} className='textarea'/>
                                                 <button onClick={complaintsIssue} type='submit'>Send</button>
@@ -404,7 +404,6 @@ const TenantDashboard = (props) => {
                     </div>
                     <div className='lanlord'>
                         <div className='landlord-info'>
-                            {/* <img className='landlord-img' src='' alt='your landlord'/> */}
                             <p>Your Lanlord, {landlord.username}</p>
                         </div>
                     </div>
@@ -424,6 +423,7 @@ const TenantDashboard = (props) => {
                 </div>
         </div>
     )
-}//e
+}//el
+                            {/* <img className='landlord-img' src='' alt='your landlord'/> */}
 
 export default TenantDashboard;

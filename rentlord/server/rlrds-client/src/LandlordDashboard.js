@@ -20,7 +20,7 @@ const LandlordDashboard = (props) => {
         e.preventDefault();
         setMessage(e.target.value)
 
-    }
+    }  
 
     useEffect(() => {
         localStorage.setItem('Role', 'Landlord')
