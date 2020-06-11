@@ -423,7 +423,7 @@ const TenantDashboard = (props) => {
                 </div>
         </div>
     )
-}//el
+}//elj
                             {/* <img className='landlord-img' src='' alt='your landlord'/> */}
 
 export default TenantDashboard;
