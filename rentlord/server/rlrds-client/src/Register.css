@@ -8,6 +8,17 @@
    background-size: cover;
 }
 
+@media screen and (max-width: 1024px) {
+    .register-contain{
+       background-position: center;
+
+
+    }
+}
+
+
+
+
 input:focus {
     outline: none;
     
@@ -31,6 +42,16 @@ input:focus {
     border-radius: 10px;
 }
 
+@media screen and (max-width: 1024px) {
+    .register-box {
+       width: 75%;
+
+
+    }
+}
+
+
+
 .register-box h3 {
     letter-spacing: 1.5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -38,6 +59,15 @@ input:focus {
     padding-bottom: 10px;
 
 }
+
+@media screen and (max-width: 1024px) {
+    .register-box h3{
+       font-size: 150%;
+        padding-bottom: 30px;
+
+    }
+}
+
 
 .username input {
     color: white;

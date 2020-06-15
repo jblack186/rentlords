@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import './App.css';
 import Login from './Login';
 import { Route } from 'react-router-dom';
 import TenantDashboard from './TenantDashboard';
