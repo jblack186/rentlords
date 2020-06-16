@@ -179,10 +179,10 @@ const TenantDashboard = (props) => {
 
     return (
         <div>
-        <div className='dash-contain'>
-        <SideBar />
+            <SideBar />
+        <div className='tenant-dash-contain'>
             <div className='dash'>
-                <div className='user-info-contain'>
+                <div className='tenant-user-info-contain'>
                     <div className='user-info'>
                         <div className='notifications'>
                         <ul>

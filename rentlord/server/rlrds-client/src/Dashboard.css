@@ -15,6 +15,25 @@
 
 }
 
+.tenant-dash-contain {
+    max-height: 100%;
+    display: flex;
+    background: linear-gradient(rgb(21, 27, 27),rgba(66, 97, 79, 0.466));
+    margin: 0;
+    width: 100vw;
+    padding-left: 92px;
+
+}
+
+@media screen and (max-width: 1025px) {
+    .tenant-dash-contain {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+
 @media screen and (max-width: 1025px) {
     .dash-contain {
         padding-left: 20%;
@@ -155,6 +174,22 @@
     justify-content: space-between;
 }
 
+.tenant-user-info-contain {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+
+@media screen and (max-width: 1025px) {
+    .tenant-user-info-contain {
+        flex-direction: column;
+    }
+}
+
+
+
 .user-info {
     width: 30%;
     display: flex;
@@ -162,6 +197,14 @@
     align-items: center;
     margin-left: 5px;
 }
+
+@media screen and (max-width: 1025px) {
+    .user-info {
+        width: 100%;
+        margin: 0;
+    }
+}
+
 
 .user p {
     color: white;
@@ -193,6 +236,13 @@
     align-items: center;
 
 }
+
+@media screen and (max-width: 1025px) {
+    .user {
+        display: none;
+    }
+}
+
 
 .profile-img {
     width: 250px;
@@ -236,6 +286,14 @@
     z-index: 3;
 
 }
+
+@media screen and (max-width: 1025px) {
+    .amneties {
+        width: 100%;
+    }
+}
+
+
 
 .issues-list-contain {
     padding: 0;
@@ -380,6 +438,14 @@
     
 }
 
+@media screen and (max-width: 1025px) {
+    .issue-list p {
+        width: 100%;
+    }
+
+}
+
+
 .amneties li {
     color: white;
     width: 500px;
@@ -390,6 +456,13 @@
     justify-content: center;
 
 }
+
+@media screen and (max-width: 1025px) {
+    .amneties li{
+        width: 100%;
+    }
+}
+
 
 .card-container {
     height: 100%;
@@ -420,6 +493,11 @@
     
 }
 
+@media screen and (max-width: 1025px) {
+    .card-container:hover .iss {
+        transform: rotateY(0deg);
+    }
+}
 
 
 
@@ -432,6 +510,21 @@
     align-items: center;
 
   }
+
+  @media screen and (max-width: 1025px) {
+    ..plumbing .card-back {
+        position: relative;
+        backface-visibility: visible;
+    }
+}
+
+
+  @media screen and (max-width: 1025px) {
+    .plumbing .card-back {
+        backface-visibility: visible;
+    }
+}
+
 
 
 .amneties-contain {
@@ -490,6 +583,13 @@
     
 }
 
+@media screen and (max-width: 1025px) {
+    .iss.first p {
+        width: 100%;
+    }
+}
+
+
 .iss.second {
     border-top: rgb(73, 95, 93) solid 1px;
     height: 100%;
@@ -499,6 +599,19 @@
 .iss.second p{
     width: 400px;
 
+}
+
+@media screen and (max-width: 1025px) {
+    .iss.second p {
+        width: 100%;
+    }
+}
+
+
+@media screen and (max-width: 1025px) {
+    .iss .iss.second p {
+        width: 100%;
+    }
 }
 
 
@@ -523,6 +636,13 @@
     
 }
 
+@media screen and (max-width: 1025px) {
+    .card-back {
+        transform: none;
+    }
+}
+
+
 .card-back form {
     display: flex;
     flex-direction: column;
@@ -545,6 +665,11 @@
     align-self: center;
 }
 
+@media screen and (max-width: 1025px) {
+    .card-back form textarea {
+        width: 100%;
+    }
+}
 
 
 .issues-profile {
@@ -834,6 +959,13 @@ span {
 
 }
 
+@media screen and (max-width: 1025px) {
+    .tenant-messaging p {
+        width: 100%;
+    }
+}
+
+
 .landlord-profile-box p {
     width: 100%;
 }
@@ -893,6 +1025,13 @@ span {
         
     }
 }
+
+@media screen and (max-width: 1025px) {
+    .tag {
+        display: none;
+    }
+}
+
 
 
 
