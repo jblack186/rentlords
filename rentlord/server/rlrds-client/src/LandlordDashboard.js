@@ -81,8 +81,9 @@ const close = e => {
 
     return (
         <div>
+        <SideBar />
+
         <div className='dash-contain'>
-            <SideBar />
             <div className='dash'>
                 <div className='top-bar'>
                     <div className='message-logo'>
@@ -106,10 +107,10 @@ const close = e => {
                     </div>
                 </div>
                 <div className='button-box'>
+                <div>
                 <DropdownButton className='tenant-button' id="dropdown-item-button" title={tenantName.length > 0 ? `Messaging ${tenantName}` : "Choose Tenant Here"}>
                     {props.issues ? props.issues.map((item, index) => { return <Dropdown.Item as="button" key={index} onClick={tenantMessage} value={[item._userName, item._user, item.fromTenantMessage]}>{item._userName}</Dropdown.Item>}) :  null}
                 </DropdownButton>
-                <div>
                 <div className={fromTenantMessage ? 'message-box' : null}>
                     <div className='messaging'>
                         {fromTenantMessage ? fromTenantMessage.map((item, index )=> {
@@ -120,7 +121,7 @@ const close = e => {
                         }) : null}
                     </div>
                 </div>
-                <button onClick={close} style={fromTenantMessage ? {borderRadius: '5px', backgroundColor: 'rgb(73, 95, 93)', width: '300px', border: 'none'} : {display: 'none'}}>Close</button> 
+                <button onClick={close} style={fromTenantMessage ? {borderRadius: '5px', backgroundColor: 'blue', width: '10%', border: 'none', fontSize: '130%', width:'100%', cursor: 'pointer', color: 'white'} : {display: 'none'}}>Close</button> 
                 </div>
                 </div>
                 <div className='user-info-contain'>

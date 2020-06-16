@@ -9,16 +9,23 @@
     max-height: 100%;
     display: flex;
     background: linear-gradient(rgb(21, 27, 27),rgba(66, 97, 79, 0.466));
-    
-
     margin: 0;
-    
+    width: 100vw;
+    padding-left: 105px;
 
 }
 
+@media screen and (max-width: 1025px) {
+    .dash-contain {
+        padding-left: 20%;
+    }
+}
+
+
+
 .dash {
     width: 100%;
-    margin-left: 100px;
+    /* padding-left: 100px; */
 
 }
 
@@ -47,7 +54,7 @@
     background-color: rgb(73, 95, 93);
     display: flex;
     justify-content: space-evenly;
-    padding-left: 100px;
+    /* margin-left: 100px; */
 
 }
 
@@ -55,13 +62,15 @@
 
 
 .message-logo {
-    width: 5%;
+    padding-right: 10px;
     border-right: 1px solid darkgray;
     display: flex;
     align-items: center;
     justify-content: center;
     
 }
+
+
 
 .message {
     width: 70%;
@@ -100,9 +109,17 @@
     font-size: 110%;
     background-color: rgb(73, 95, 93);
     border: 0;
-
     
+
 }
+
+@media screen and (max-width: 1025px) {
+    .message input {
+        padding-right: 10px;
+        width: 80%
+    }
+}
+
 
  input:focus {
     outline: none;
@@ -114,6 +131,8 @@
 }
 
 
+
+
 .landlord-info img{
     width: 75px;
     height: 60px;
@@ -121,6 +140,13 @@
 
 
 }
+
+@media screen and (max-width: 1025px) {
+    .landlord-info {
+        display: none;
+    }
+}
+
 
 .user-info-contain {
     display: flex;
@@ -296,7 +322,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(73, 95, 93);
+    /* background-color: rgb(73, 95, 93); */
     
 
 }
@@ -532,7 +558,7 @@
 
 
 .landlord-notifications {
-    width: 500px;
+    width: 100%;
     height: 100%;
     padding-top: 100px;
     animation-name: grow;
@@ -648,15 +674,13 @@
     border-top: solid 1px white;
     border-bottom: solid 1px white;
     background: black;
-    width: 500px;
+    width: 100%;
     color: white;
     border-radius: 15px;
     animation-name: grow;
     animation-duration: 1s;
     overflow-y: scroll;
     height: 400px;
-
-
 
 
 }
@@ -677,7 +701,7 @@ span {
     padding-bottom: 15px;
     border-bottom: solid silver 1px;
     align-self: center;
-    width: 80%;
+    /* width: 80%; */
     margin: 0 auto;
 }
 
@@ -685,7 +709,7 @@ span {
     border-radius: 5px;
     color: black;
     font-size: 60%;
-    width: 80px;
+    /* width: 80px; */
     height: 20px;
     border: none;
 }
@@ -709,21 +733,44 @@ span {
 }
 
 .button-box {
-    width: 500px;
+    width: 100%;
     display: flex;
     text-align: left;
 }
 
 #dropdown-item-button{
-    background-color: rgb(130, 179, 181);
-    color: black;
-    border: 0;
+    background-color: blue;
+    color: white;
+    border: 1px solid gray;
+    cursor: pointer;
+    width: 200px;
+    height: 40px;
+    border-radius: 3px;
 }
+
+#dropdown-item-button:hover{
+    background-color: white;
+    color: blue;
+    border: 1px dashed gray;
+    cursor: pointer;
+    transition-duration: .5s;
+}
+
+
+
 
 .messaging {
     display: flex;
     flex-direction: column-reverse;
+    width: 400px;
 }
+
+@media screen and (max-width: 1025px) {
+    .messaging {
+        width: 300px;
+    }
+}
+
 
 .messaging:first-child {
     padding-top: 10px;
@@ -732,7 +779,7 @@ span {
 .message-box {
     background-color: white;
     height: 400px;
-    width: 500px;
+    width: 100%;
     overflow-y: scroll;
     border-radius: 5px;
     
@@ -745,6 +792,7 @@ span {
     word-wrap:break-word;
     animation-name: appear;
     animation-duration: 1s;
+    margin-bottom: 20px;
 
 }
 
@@ -787,7 +835,7 @@ span {
 }
 
 .landlord-profile-box p {
-    width: 180px;
+    width: 100%;
 }
 
 
@@ -845,4 +893,9 @@ span {
         
     }
 }
+
+
+
+
+
 
