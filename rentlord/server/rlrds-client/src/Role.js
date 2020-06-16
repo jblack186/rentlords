@@ -13,12 +13,14 @@ const Role = () => {
     const changeRoleTenant = (e) => {
         e.preventDefault();
         setChooseRole('Tenant')
+        e.target.style.border = 'blue 3px solid'
 
     }
 
     const changeRoleLandlord = (e) => {
         e.preventDefault();
         setChooseRole('Landlord')
+        e.target.style.border = 'blue 3px solid'
 
     }
 
@@ -60,6 +62,7 @@ const Role = () => {
                         <img  value='Landlord' onClick={changeRoleLandlord} src='https://images.pexels.com/photos/955395/pexels-photo-955395.jpeg?cs=srgb&dl=two-person-in-long-sleeved-shirt-shakehand-955395.jpg&fm=jpg' alt='what a handshake'/>
                         </button>
                     </div>
+                    <button className='next' type='submit'>Go to Dashboard</button>
                     <div value='Tenant'  onClick={changeRoleTenant}>
                         <p>I am a Tenant</p>
                         <button type='submit' value='Tenant' onClick={changeRoleTenant}>

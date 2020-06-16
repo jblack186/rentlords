@@ -21,7 +21,7 @@
     background: linear-gradient(rgb(21, 27, 27),rgba(66, 97, 79, 0.466));
     margin: 0;
     width: 100vw;
-    padding-left: 92px;
+    padding-left: 20%;
 
 }
 
@@ -40,6 +40,11 @@
     }
 }
 
+@media screen and (min-width: 1025px) {
+    .tenant-dash-contain {
+        padding-left: 7%;
+    }
+}
 
 
 .dash {
@@ -77,6 +82,28 @@
 
 }
 
+.tenant-top-bar-container {
+    width: 100%
+}
+
+@media screen and (max-width: 1025px) {
+    .tenant-top-bar-container {
+        padding-top: 100px;
+        width: 100%;
+    }
+}
+
+
+.tenant-top-bar {
+    width: 100%;
+    background-color: rgb(73, 95, 93);
+    display: flex;
+    justify-content: space-evenly;
+    /* margin-left: 100px; */
+
+}
+
+
 
 
 
@@ -92,7 +119,7 @@
 
 
 .message {
-    width: 70%;
+    width: 50%;
     height: 10vh;
     display: flex;
     align-items: center;
@@ -470,6 +497,14 @@
     perspective: 1000px;
 
 }
+
+@media screen and (max-width: 1025px) {
+    .card-container {
+       height: 130vh;
+       border: 1px solid white;
+    }
+}
+
 
 
 .iss {
@@ -887,7 +922,7 @@ span {
 .messaging {
     display: flex;
     flex-direction: column-reverse;
-    width: 400px;
+    width: 400px
 }
 
 @media screen and (max-width: 1025px) {
@@ -948,12 +983,20 @@ span {
     margin-left: 100px;
 }
 
+@media screen and (max-width: 1025px) {
+    .tenant-messaging {
+        height: 300px;
+       
+    }
+}
+
+
 .tenant-messaging p {
     border-radius: 10px;
     word-wrap:break-word;
     animation-name: appear;
     animation-duration: 1s;
-    width: 500px;
+    width: 100%;
     text-align: left;
 
 

@@ -391,8 +391,8 @@ const TenantDashboard = (props) => {
                 </div>
             </div>
             </div>
-            <div className='top-bar-container'>
-            <div className='top-bar'>
+            <div className='tenant-top-bar-container'>
+            <div className='tenant-top-bar'>
                     <div className='message-logo'>
                         <FontAwesomeIcon icon={faComments} style={{color: 'darkGray', fontSize: '40px'}}/>          
                     </div>
@@ -404,7 +404,7 @@ const TenantDashboard = (props) => {
                     </div>
                     <div className='lanlord'>
                         <div className='landlord-info'>
-                            <img className='landlord-img' src='' alt='your landlord'/>
+                            <img className='landlord-img' src='' alt=''/>
                             <p>Your Lanlord, {landlord.username}</p>
                         </div>
                     </div>
@@ -414,10 +414,10 @@ const TenantDashboard = (props) => {
                 <div className={tenantMessage ? 'tenant-message-box' : null}>
                     <div className='tenant-messaging'>
                         {tenantMessage ? tenantMessage.map((item, index) => { 
-                            return item.replace('Tenant', 'for') && <p key={index} style={item.includes('Tenant') ? {backgroundColor: 'blue', color: 'white', alignSelf: 'flex-end'} : item.includes('You:') ? { backgroundColor: 'grey'} : null}>{item.replace('You:', `${landlord.username}:`).replace('Tenant', 'You:') }</p>
+                            return item.replace('Tenant', 'for') && <p key={index} style={item.includes('Tenant') ? {backgroundColor: 'blue', color: 'white', alignSelf: 'flex-end', width: '200px', marginTop: '10px'} : item.includes('You:') ? { backgroundColor: 'grey', width: '200px', marginTop: '10px'} : null}>{item.replace('You:', `${landlord.username}:`).replace('Tenant', 'You:')}</p>
                         }) : null} 
                         {tempMessage && props.tenant ? tempMessage.map(mess => {
-                            return <div style={{alignSelf: 'flex-end'}}> <p style={{color: 'white', backgroundColor: 'blue', paddingBottom: '0px;' }}>You: {mess} </p></div>
+                            return <div style={{alignSelf: 'flex-end'}}> <p style={{color: 'white', backgroundColor: 'blue', paddingBottom: '10px;', width: '200px' }}>You: {mess} </p></div>
                         }) : null}
                     </div>
                 </div>
