@@ -12,6 +12,7 @@
     margin: 0;
     width: 100vw;
     padding-left: 105px;
+    height: 100vh;
 
 }
 
@@ -22,7 +23,6 @@
     margin: 0;
     width: 100vw;
     padding-left: 20%;
-
 }
 
 @media screen and (max-width: 1025px) {
@@ -197,7 +197,6 @@
 .user-info-contain {
     display: flex;
     width: 100%;
-    height: 100%;
     justify-content: space-between;
 }
 
@@ -732,7 +731,7 @@
 .landlord-notifications {
     width: 100%;
     height: 100%;
-    padding-top: 100px;
+    /* padding-top: 100px; */
     animation-name: grow;
     animation-duration: 1s;
     
@@ -740,6 +739,16 @@
 
 }
 
+/* .tenant-notifications {
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    animation-name: grow;
+    animation-duration: 1s;
+    
+
+
+} */
 
 
 .ten-issues {
@@ -950,7 +959,7 @@ span {
 
 .message-box {
     background-color: white;
-    height: 100%;
+    height: 70vh;
     width: 100%;
     overflow-y: scroll;
     border-radius: 5px;
