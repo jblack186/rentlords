@@ -54,24 +54,22 @@ const Role = () => {
 
     return (
         <div>
-            
                 <form className='role-contain' onSubmit={newRole}>
-                    <div>
+                    <div className='landlord-role-contain'>
                     <p>I am a Landlord</p>
                         <button type='submit' value='Landlord' onClick={changeRoleLandlord}>
-                        <img  value='Landlord' onClick={changeRoleLandlord} src='https://images.pexels.com/photos/955395/pexels-photo-955395.jpeg?cs=srgb&dl=two-person-in-long-sleeved-shirt-shakehand-955395.jpg&fm=jpg' alt='what a handshake'/>
+                        <img className='landlord-image' value='Landlord' onClick={changeRoleLandlord} src='https://images.pexels.com/photos/955395/pexels-photo-955395.jpeg?cs=srgb&dl=two-person-in-long-sleeved-shirt-shakehand-955395.jpg&fm=jpg' alt='what a handshake'/>
                         </button>
-                    </div>
                     <button className='next' type='submit'>Go to Dashboard</button>
-                    <div value='Tenant'  onClick={changeRoleTenant}>
+                    </div>
+                    <div className='tenant-role-contain'>
                         <p>I am a Tenant</p>
                         <button type='submit' value='Tenant' onClick={changeRoleTenant}>
-                        <img src='https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260' alt='nice apartment'/>
+                        <img className='tenant-image' src='https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260' alt='nice apartment'/>
                         </button>
-                    </div>
                     <button className='next' type='submit'>Go to Dashboard</button>
+                    </div>
                 </form>
-            
         </div>
     )
 }

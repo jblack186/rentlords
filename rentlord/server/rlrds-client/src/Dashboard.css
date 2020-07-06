@@ -8,7 +8,9 @@
 .dash-contain {
     max-height: 100%;
     display: flex;
-    background: linear-gradient(rgb(21, 27, 27),rgba(66, 97, 79, 0.466));
+    background: url('https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+   background-repeat: no-repeat;
+   background-size: cover;
     margin: 0;
     width: 100vw;
     padding-left: 105px;
