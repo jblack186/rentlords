@@ -80,8 +80,8 @@ const close = e => {
 }
 
     return (
-        <div>
-        <SideBar />
+        <div className='dashboard-contain'>
+        <SideBar landlord={props.landlord.wholeName} />
 
         <div className='dash-contain'>
             <div className='dash'>
