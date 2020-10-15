@@ -22,15 +22,15 @@
    background-size: cover;
     margin: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 
 .tenant-dash-contain {
     max-height: 100%;
-    display: flex;
+    /* display: flex; */
     /* background: linear-gradient(rgb(21, 27, 27),rgba(66, 97, 79, 0.466)); */
     margin: 0;
-    width: 100vw;
+    width: 100%;
     /* padding-left: 20%; */
 }
 
@@ -57,7 +57,7 @@
 
 
 .dash {
-    background: url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?cs=srgb&dl=abstract-art-artistic-background-1103970.jpg&fm=jpg');
+    /* background: url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?cs=srgb&dl=abstract-art-artistic-background-1103970.jpg&fm=jpg'); */
     background-size: cover;
     width: 100%; 
     display: flex;
@@ -74,6 +74,11 @@
         
         flex-direction: column;
     }
+}
+
+.tenant-top-bar-container {
+    position: absolute;
+    bottom: 0;
 }
 
 
@@ -211,7 +216,7 @@
 .tenant-user-info-contain {
     display: flex;
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     justify-content: space-between;
 }
 
@@ -225,11 +230,11 @@
 
 
 .user-info {
-    width: 100%;
+    width: 40vw;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    margin-left: 5px;
 }
 
 @media screen and (max-width: 1025px) {
@@ -250,7 +255,6 @@
     height: 100%;
     padding: 0;
     margin: 0;
-    padding-left: 5px;
 
 }
 
@@ -259,6 +263,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-left: 15px;
 
 }
 
@@ -315,7 +320,7 @@
 }
 
 .amneties {
-    width: 500px;
+    width: 40vh;
     height: 100%;
     padding: 0;
     margin: 0;
@@ -486,7 +491,7 @@
 
 .amneties li {
     color: white;
-    width: 500px;
+    /* width: 500px; */
     list-style: none;
     height: 17vh;
     display: flex;
@@ -651,7 +656,7 @@
 }
 
 .iss.second p{
-    width: 400px;
+    /* width: 400px; */
 
 }
 
@@ -715,7 +720,7 @@
     margin-top: 5px;
     font-size: 120%;
     height: 90px;
-    width: 450px;
+    /* width: 450px; */
     align-self: center;
 }
 
@@ -1082,8 +1087,7 @@ span {
     display: flex;
     margin: 0 auto;
     background-color: rgb(176, 191, 191);
-    margin-top: 10px;
-    height: 200px;
+    height: 100vh;
     width: 100%;
     overflow-y: scroll;
     border-radius: 5px;

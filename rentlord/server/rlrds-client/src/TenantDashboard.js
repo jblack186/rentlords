@@ -314,14 +314,14 @@ const TenantDashboard = (props) => {
                             </ul>
                         </div>
                         </div>
-                        <div className='user'>
+                        {/* <div className='user'>
                             {props.tenant && props.tenant.picture.length > 0 ? <img className='profile-img' src={`https://res.cloudinary.com/drgfyozzd/image/upload/${props.tenant.picture}`} alt='looking great'  /> : <FontAwesomeIcon icon={faUser} style={{color: 'white', fontSize: '200px', marginTop: '250px', border: 'solid 1px', padding: '10px', borderRadius: '20px'}}/>}                               {!props.tenant || props.tenant.picture.length <= 0 ? <Link to='/settings'><p>Upload Picture</p></Link> : null}
                             <div className='profile-box'>
                                 <p>{props.tenant ? props.tenant.wholeName : null}</p>
                                 <address className='address'> 18 A st Derby, CT, 06418</address>
                             </div>
-                        </div>
-                        <p onMouseOver={scrollDown} className='tag'>Messages</p>
+                        </div> */}
+                        {/* <p onMouseOver={scrollDown} className='tag'>Messages</p> */}
                     
                         <div className='amneties'>
                             <ul className='issues-list-container'>
@@ -389,10 +389,17 @@ const TenantDashboard = (props) => {
                                 </div>
                             </ul>
                         </div>
-                </div>
-            </div>
-            </div>
-            <div className='tenant-top-bar-container'>
+                                 
+                <div className={tenantMessage ? 'tenant-message-box' : null}>
+                    <div className='tenant-messaging'>
+                        {tenantMessage ? tenantMessage.map((item, index) => { 
+                            return item.replace('Tenant', 'for') && <p key={index} style={item.includes('Tenant') ? {backgroundColor: 'blue', color: 'white', alignSelf: 'flex-end', width: '200px', marginTop: '10px'} : item.includes('You:') ? { backgroundColor: 'grey', width: '200px', marginTop: '10px'} : null}>{item.replace('You:', `${landlord.username}:`).replace('Tenant', 'You:')}</p>
+                        }) : null} 
+                        {tempMessage && props.tenant ? tempMessage.map(mess => {
+                            return <div style={{alignSelf: 'flex-end'}}> <p style={{color: 'white', backgroundColor: 'blue', paddingBottom: '10px;', width: '200px' }}>You: {mess} </p></div>
+                        }) : null}
+                    </div>
+                    <div className='tenant-top-bar-container'>
             <div className='tenant-top-bar'>
                     <div className='message-logo'>
                         <FontAwesomeIcon icon={faComments} style={{color: 'darkGray', fontSize: '40px'}}/>          
@@ -405,25 +412,19 @@ const TenantDashboard = (props) => {
                     </div>
                     <div className='lanlord'>
                         <div className='landlord-info'>
-                            <img className='landlord-img' src='' alt=''/>
                             <p>Your Lanlord, {landlord.username}</p>
                         </div>
                     </div>
                 </div>
 </div>
+
+                </div>
+                
+
+                </div>
+            </div>
+            </div>
 </div>
-            <div>
-                <div className={tenantMessage ? 'tenant-message-box' : null}>
-                    <div className='tenant-messaging'>
-                        {tenantMessage ? tenantMessage.map((item, index) => { 
-                            return item.replace('Tenant', 'for') && <p key={index} style={item.includes('Tenant') ? {backgroundColor: 'blue', color: 'white', alignSelf: 'flex-end', width: '200px', marginTop: '10px'} : item.includes('You:') ? { backgroundColor: 'grey', width: '200px', marginTop: '10px'} : null}>{item.replace('You:', `${landlord.username}:`).replace('Tenant', 'You:')}</p>
-                        }) : null} 
-                        {tempMessage && props.tenant ? tempMessage.map(mess => {
-                            return <div style={{alignSelf: 'flex-end'}}> <p style={{color: 'white', backgroundColor: 'blue', paddingBottom: '10px;', width: '200px' }}>You: {mess} </p></div>
-                        }) : null}
-                    </div>
-                </div>
-                </div>
 
         </div>
     )
